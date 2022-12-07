@@ -2,7 +2,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Image from "next/image";
 import { workImg } from "../imagesData";
 import Carousel from "react-elastic-carousel";
-import { CarouselMainProps } from "../PropsInterface";
+// import { CarouselMainProps } from "../PropsInterface";
 const CarouselWork = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
