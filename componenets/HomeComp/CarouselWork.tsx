@@ -1,8 +1,16 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Image from "next/image";
+import { ReactElement, PropsWithChildren, forwardRef, ReactNode } from "react";
 import { workImg } from "../imagesData";
-import Carousel from "react-elastic-carousel";
+import ReactElasticCarousel from "react-elastic-carousel";
+import { ReactElasticCarouselProps } from "react-elastic-carousel";
+import { Props } from "react-responsive-carousel/lib/ts/components/Thumbs";
 // import { CarouselMainProps } from "../PropsInterface";
+const CustomCarousel = forwardRef<
+  any,
+  ReactElasticCarouselProps & { children: ReactNode[] }
+>((props, ref) => <ReactElasticCarousel ref={ref} {...props} />);
+
 const CarouselWork = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -12,24 +20,29 @@ const CarouselWork = () => {
   ];
   return (
     <>
-      <Carousel
-        style={{ color: "gray" }}
+      <CustomCarousel
+        isRTL={true}
+        itemsToShow={3}
         breakPoints={breakPoints}
         showArrows={false}
         enableAutoPlay={true}
       >
         {workImg.map((val, index) => {
           return (
-            <Image
-              key={index}
-              src={val.src}
-              alt="slide"
-              width="200px"
-              height="200px"
-            />
+            <>
+              <div>
+                <Image
+                  key={index}
+                  src={val.src}
+                  alt="slide"
+                  width="200px"
+                  height="200px"
+                />
+              </div>
+            </>
           );
         })}
-      </Carousel>
+      </CustomCarousel>
     </>
   );
 };
